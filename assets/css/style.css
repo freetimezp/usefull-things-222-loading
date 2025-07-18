@@ -9,3 +9,52 @@
 a {
     text-decoration: none;
 }
+
+html,
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #196d8e;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(059%, -50%);
+}
+
+.circle {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: transparent; /* set #000 to see than transparent */
+    border-radius: 50%;
+    box-shadow: 30px 30px 0 #38dadd, -30px 30px 0 #e67e22, 30px -30px 0 #e74c3c, -30px -30px 0 #f1c40f,
+        0px -45px 0 #9b59b5, 0px 45px 0 #3f96ed, 45px 0 0 #f39c12, -45px 0 0 #11d542;
+    animation: animate 5s infinite;
+}
+
+@keyframes animate {
+    0% {
+        box-shadow: 0px 0px 0 #38dadd, 0px 0px 0 #e67e22, 0px 0px 0 #e74c3c, 0px 0px 0 #f1c40f, 0px 0px 0 #9b59b5,
+            0px 0px 0 #3f96ed, 0px 0 0 #f39c12, 0px 0 0 #11d542;
+        transform: rotate(0deg);
+    }
+    25% {
+        box-shadow: 30px 30px 0 #38dadd, -30px 30px 0 #e67e22, 30px -30px 0 #e74c3c, -30px -30px 0 #f1c40f,
+            0px -45px 0 #9b59b5, 0px 45px 0 #3f96ed, 45px 0 0 #f39c12, -45px 0 0 #11d542;
+        transform: rotate(360deg);
+    }
+    75% {
+        box-shadow: 30px 30px 0 #38dadd, -30px 30px 0 #e67e22, 30px -30px 0 #e74c3c, -30px -30px 0 #f1c40f,
+            0px -45px 0 #9b59b5, 0px 45px 0 #3f96ed, 45px 0 0 #f39c12, -45px 0 0 #11d542;
+        transform: rotate(0deg);
+    }
+    100% {
+        box-shadow: 0px 0px 0 #38dadd, 0px 0px 0 #e67e22, 0px 0px 0 #e74c3c, 0px 0px 0 #f1c40f, 0px 0px 0 #9b59b5,
+            0px 0px 0 #3f96ed, 0px 0 0 #f39c12, 0px 0 0 #11d542;
+        transform: rotate(720deg);
+    }
+}
