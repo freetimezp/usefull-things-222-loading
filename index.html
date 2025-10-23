@@ -2,15 +2,30 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>project</title>
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <title>Project</title>
     </head>
-
     <body>
-        <div class="center">
-            <div class="circle"></div>
+        <div class="controls">
+            <button class="btn" data-loader="quantum">Quantum Portal</button>
+            <button class="btn" data-loader="energy">Energy Burst</button>
+            <button class="btn" data-loader="magnetic">Magnetic Orbs</button>
+        </div>
+
+        <div class="card visible" id="quantum-card">
+            <div class="loader quantum"></div>
+            <h2>Quantum Portal</h2>
+        </div>
+
+        <div class="card hidden" id="energy-card">
+            <div class="loader energy"></div>
+            <h2>Energy Burst</h2>
+        </div>
+
+        <div class="card hidden" id="magnetic-card">
+            <div class="loader magnetic" id="magnetic"></div>
+            <h2>Magnetic Orbs</h2>
         </div>
 
         <script src="./assets/js/main.js"></script>

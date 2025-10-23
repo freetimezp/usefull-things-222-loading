@@ -1,60 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap");
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     list-style: none;
-    list-style-type: none;
 }
 
-a {
-    text-decoration: none;
-}
-
-html,
 body {
     width: 100vw;
     height: 100vh;
+    background: #011923;
     overflow: hidden;
-    background: #196d8e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 1s ease;
+    font-family: "Manrope", sans-serif;
+    color: #fff;
 }
 
-.center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(059%, -50%);
+/* ==== Buttons ==== */
+.controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
 }
 
-.circle {
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(6px);
+}
+.btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* ==== Card Container ==== */
+.card {
     position: absolute;
-    width: 35px;
-    height: 35px;
-    background: transparent; /* set #000 to see than transparent */
+    width: 360px;
+    height: 450px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.8s ease, box-shadow 1s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.card.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+}
+
+.card h2 {
+    margin-top: 20px;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+/* ==== Neon Glow Themes ==== */
+.card[data-theme="quantum"].visible {
+    box-shadow: 0 0 40px #00f0ff, 0 0 80px #00aaff;
+}
+
+.card[data-theme="energy"].visible {
+    box-shadow: 0 0 40px #0099ff, 0 0 80px #00d4ff;
+}
+
+.card[data-theme="magnetic"].visible {
+    box-shadow: 0 0 40px #00ff6a, 0 0 80px #11d542;
+}
+
+/* ==== Loader base ==== */
+.loader {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+/* ==== 1. Quantum Portal ==== */
+.quantum {
     border-radius: 50%;
-    box-shadow: 30px 30px 0 #38dadd, -30px 30px 0 #e67e22, 30px -30px 0 #e74c3c, -30px -30px 0 #f1c40f,
-        0px -45px 0 #9b59b5, 0px 45px 0 #3f96ed, 45px 0 0 #f39c12, -45px 0 0 #11d542;
-    animation: animate 5s infinite;
+    background: radial-gradient(circle, #00f0ff33, transparent 70%);
 }
-
-@keyframes animate {
-    0% {
-        box-shadow: 0px 0px 0 #38dadd, 0px 0px 0 #e67e22, 0px 0px 0 #e74c3c, 0px 0px 0 #f1c40f, 0px 0px 0 #9b59b5,
-            0px 0px 0 #3f96ed, 0px 0 0 #f39c12, 0px 0 0 #11d542;
-        transform: rotate(0deg);
-    }
-    25% {
-        box-shadow: 30px 30px 0 #38dadd, -30px 30px 0 #e67e22, 30px -30px 0 #e74c3c, -30px -30px 0 #f1c40f,
-            0px -45px 0 #9b59b5, 0px 45px 0 #3f96ed, 45px 0 0 #f39c12, -45px 0 0 #11d542;
+.quantum::before,
+.quantum::after {
+    content: "";
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top: 3px solid #00f0ff;
+    border-bottom: 3px solid #ff0080;
+    animation: spin 2s linear infinite;
+    filter: blur(1px);
+}
+.quantum::after {
+    border-top-color: #ffae00;
+    border-bottom-color: #00ff99;
+    animation-direction: reverse;
+}
+@keyframes spin {
+    100% {
         transform: rotate(360deg);
     }
-    75% {
-        box-shadow: 30px 30px 0 #38dadd, -30px 30px 0 #e67e22, 30px -30px 0 #e74c3c, -30px -30px 0 #f1c40f,
-            0px -45px 0 #9b59b5, 0px 45px 0 #3f96ed, 45px 0 0 #f39c12, -45px 0 0 #11d542;
-        transform: rotate(0deg);
+}
+
+/* ==== 2. Energy Burst ==== */
+.energy {
+    border-radius: 50%;
+    background: radial-gradient(circle, #00d4ff, #0062ff);
+    box-shadow: 0 0 30px #00d4ff;
+    animation: glow 1.5s infinite ease-in-out;
+}
+.energy::before,
+.energy::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid #00d4ff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    animation: ripple 2s infinite ease-out;
+}
+.energy::after {
+    animation-delay: 0.7s;
+}
+@keyframes glow {
+    50% {
+        box-shadow: 0 0 60px #00d4ff, 0 0 120px #00d4ff;
+    }
+}
+@keyframes ripple {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
     }
     100% {
-        box-shadow: 0px 0px 0 #38dadd, 0px 0px 0 #e67e22, 0px 0px 0 #e74c3c, 0px 0px 0 #f1c40f, 0px 0px 0 #9b59b5,
-            0px 0px 0 #3f96ed, 0px 0 0 #f39c12, 0px 0 0 #11d542;
-        transform: rotate(720deg);
+        transform: translate(-50%, -50%) scale(4);
+        opacity: 0;
+    }
+}
+
+/* ==== 3. Magnetic Orbs ==== */
+.magnetic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.magnetic span {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #11d542;
+    opacity: 0;
+    animation: orbit 2s linear infinite;
+}
+@keyframes orbit {
+    0% {
+        transform: rotate(0deg) translateX(35px) rotate(0deg);
+        filter: hue-rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(360deg) translateX(35px) rotate(-360deg);
+        filter: hue-rotate(360deg);
+        opacity: 1;
     }
 }
